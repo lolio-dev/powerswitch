@@ -4,9 +4,8 @@
 
 #define potPin A0
 
-const int triggerPin = 7; // Numéro de la broche de déclenchement
-const int buttonPin = 8;
-const int transPin = 9;
+const int triggerPin = 8;
+const int buttonPin = 7;
 
 int potValue;
 
@@ -35,9 +34,8 @@ void setup() {
   screen.setTextSize(1.5);          
   screen.setTextColor(WHITE); 
   
-  pinMode(triggerPin, OUTPUT); // Définit la broche de déclenchement en sortie
+  pinMode(triggerPin, OUTPUT);
   pinMode(potPin, INPUT);
-  pinMode(transPin, OUTPUT);
 }
 
 void loop() {
@@ -50,6 +48,8 @@ void loop() {
   }
   
   if (!isRunning && !isFinished) {
+
+
     oledDisplayCenter("powerswitch");
     
     screen.setCursor(0, 20);
@@ -96,15 +96,15 @@ void loop() {
     unsigned long startTime = millis();
     for (int repeat=0; repeat < repeats; repeat++) {
       showRepetInfo(false, startTime, repeat);
-
+      
       delay(repeatTime * 1000);
 
       triggerRelais();
-     
+
       showRepetInfo(true, startTime, repeat);
 
-      delay(repeatTime * 1000);
-      
+      delay(repeatTime * 1000);      
+
       triggerRelais();
     } 
     isRunning = false;
